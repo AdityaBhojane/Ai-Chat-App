@@ -1,14 +1,17 @@
-import { useState } from "react";
-import DenseAppBar from "./components/DenseAppBar/DenseAppBar";
+
+// import { useState } from "react";
+
+import NavigationBar from "./components/NavigationBar/NavigationBar";
+
 
 function App() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
   return (
     <>
-      <DenseAppBar/>
+      <NavigationBar/>
     </>
   );
 }
 
-export default App;
+export default App; 
