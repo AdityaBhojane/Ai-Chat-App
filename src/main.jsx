@@ -4,13 +4,16 @@ import App from "./App.jsx";
 import "./index.css";
 import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import ContextProvider from "./Context/GeminiContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <NextUIProvider>
-      <NextThemesProvider attribute="class" defaultTheme="dark">
-        <App />
-      </NextThemesProvider>
-    </NextUIProvider>
+    <ContextProvider>
+      <NextUIProvider>
+        <NextThemesProvider attribute="class" defaultTheme="dark">
+          <App />
+        </NextThemesProvider>
+      </NextUIProvider>
+    </ContextProvider>
   </StrictMode>
 );

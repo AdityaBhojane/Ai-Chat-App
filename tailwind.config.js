@@ -7,9 +7,17 @@ export default {
   "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
+    dark:{
+      colors: {
+        primary: {
+          DEFAULT: "#BEF264",
+          foreground: "#cccccc",
+        },
+        focus: "#BEF264",
+      },
+    },
     extend: {},
   },
   darkMode: "class",
   plugins: [nextui()]
 }
-
