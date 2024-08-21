@@ -1,8 +1,8 @@
-
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button} from "@nextui-org/react";
+import { useGeminiContext } from "../../Context/Context";
 
 export default function Menubar() {
-
+  const {setPrompt,setResult} = useGeminiContext()
   return (
     <Dropdown >
       <DropdownTrigger>
@@ -20,11 +20,14 @@ export default function Menubar() {
         disallowEmptySelection
         selectionMode="multiple"
       >
-        <DropdownItem key="text">New Chat</DropdownItem>
-        <DropdownItem key="number">Number</DropdownItem>
-        <DropdownItem key="date">Date</DropdownItem>
-        <DropdownItem key="single_date">Single Date</DropdownItem>
-        <DropdownItem key="iteration">Iteration</DropdownItem>
+        <DropdownItem onClick={()=>{
+          setPrompt([]);
+          setResult(false)
+          }} key="text">New Chat</DropdownItem>
+        <DropdownItem
+         onClick={()=>setPrompt([])}  
+         className="border border-red-500"
+         >Clear All Chat</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   );

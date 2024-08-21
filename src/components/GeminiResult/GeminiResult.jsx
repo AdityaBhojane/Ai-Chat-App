@@ -8,12 +8,13 @@ function GeminiResult() {
 
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
-        prompt.map((items,index) => {
+      <div className="w-full min-h-screen mb-[15%]">
+        {prompt.map((items, index) => {
           return (
-            <div key={index} className=" w-full h-fit flex justify-center items-center">
+            <div
+              key={index}
+              className=" w-full h-fit flex justify-center items-center"
+            >
               <div className="w-1/2 max-2xl:w-[70%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] h-fit p-5 rounded-xl">
                 <Card className="p-2">
                   <CardBody>
@@ -28,16 +29,17 @@ function GeminiResult() {
                       />
                       <p className="mb-5 font-semibold">{recentPrompt}</p>
                     </div>
-                    <p className="text-sm font-normal">
-                      <ReactMarkdown>{items}</ReactMarkdown>
-                    </p>
+                    <ReactMarkdown className="text-sm font-normal">
+                      {items}
+                    </ReactMarkdown>
                   </CardBody>
                 </Card>
               </div>
             </div>
           );
-        })
-      )}
+        })}
+        {loading && <Loading />}
+      </div>
     </>
   );
 }

@@ -1,32 +1,29 @@
-import { Button, Input, useInput } from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 import { useGeminiContext } from "../../Context/Context";
-import { useEffect } from "react";
 import run from "../../config/geminiConfig";
 
 function UserInput() {
   const {
     userInput,
     setUserInput,
-    prePrompt,
-    setPrePrompt,
+    // prePrompt,
+    // setPrePrompt,
     setLoading,
     setResult,
-    prompt,
+    // prompt,
     setPrompt,
     setError,
     setRecentPrompt,
-    recentPrompt,
+    // recentPrompt,
   } = useGeminiContext();
 
   const Response = async () => {
     try {
       setLoading(true);
       setResult(true);
-      setRecentPrompt(userInput);
+      setRecentPrompt(userInput)
       const response = await run(userInput);
-      setPrompt([...prompt,response]);
-      // setRecentPrompt("")
-      // setPrePrompt([...prePrompt,response])
+      setPrompt((pre)=>[...pre,response]);
       setLoading(false);
     } catch {
       setLoading(false);
@@ -34,8 +31,6 @@ function UserInput() {
     }
   };
 
-  // console.log(prePrompt)
-  console.log(recentPrompt)
 
   // run("what is react ?");
   return (

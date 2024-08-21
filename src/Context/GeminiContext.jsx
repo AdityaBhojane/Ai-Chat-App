@@ -6,7 +6,7 @@ export const GeminiContext = createContext();
 function ContextProvider({ children }) {
   const [userInput, setUserInput] = useState("");
   const [prompt, setPrompt] = useState([]);
-  const [recentPrompt,setRecentPrompt] = useState("")
+  const [recentPrompt,setRecentPrompt] = useState([])
   const [prePrompt, setPrePrompt] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false)
