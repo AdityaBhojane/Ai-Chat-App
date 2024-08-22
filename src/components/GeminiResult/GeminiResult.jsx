@@ -4,12 +4,14 @@ import Loading from "../Loading/Loading";
 import ReactMarkdown from "react-markdown";
 
 function GeminiResult() {
-  const { prompt, loading, recentPrompt } = useGeminiContext();
+  const { result, loading } = useGeminiContext();
+  
+  // console.log(result)
 
   return (
     <>
       <div className="w-full min-h-screen mb-[15%]">
-        {prompt.map((items, index) => {
+        {result.map((items, index) => {
           return (
             <div
               key={index}
@@ -27,10 +29,10 @@ function GeminiResult() {
                         }}
                         className="w-8 h-8 border-[2px] border-blue-700 mb-5"
                       />
-                      <p className="mb-5 font-semibold">{recentPrompt}</p>
+                      <p className="mb-5 font-semibold">{items.prompt}</p>
                     </div>
                     <ReactMarkdown className="text-sm font-normal">
-                      {items}
+                      {items.results}
                     </ReactMarkdown>
                   </CardBody>
                 </Card>

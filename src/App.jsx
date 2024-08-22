@@ -6,14 +6,14 @@ import UserInput from "./components/UserInput/UserInput";
 import { useGeminiContext } from "./Context/Context";
 
 function App() {
-  const {result} = useGeminiContext();
+  const {showResult} = useGeminiContext();
   
 
 
   return (
     <>  
         <NavigationBar/>
-        {result? <GeminiResult/>: <Cards />}
+        {showResult? <GeminiResult/>: <Cards />}
         <UserInput />
     </>
   );
