@@ -7,10 +7,10 @@ import Menubar from "../Menubar/Menubar";
 function NavigationBar() {
   const { theme, setTheme } = useTheme();
   return (
-    <Navbar className="bg-[#484848] text-white">
+    <Navbar className="dark:bg-[#484848] border border-[#ccc] dark:border-black">
       <NavbarContent>
         <NavbarBrand>
-          <p className="  text-inherit text-xl">Gemini Ai</p>
+          <p className="text-inherit text-xl">Gemini Ai</p>
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent justify="end">
@@ -35,7 +35,7 @@ function NavigationBar() {
             icon={<AvatarIcon />}
             classNames={{
               base: "bg-gradient-to-br from-[#FFB457] to-[#FF705B]",
-              icon: "text-black/80",
+              icon: "text-black/80 ",
             }}
           />
         </div>

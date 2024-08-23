@@ -2,12 +2,16 @@ import { Avatar, AvatarIcon, Card, CardBody } from "@nextui-org/react";
 import { useGeminiContext } from "../../Context/Context";
 import Loading from "../Loading/Loading";
 import ReactMarkdown from "react-markdown";
+// import { TextEffect } from "../TextEffect/TextEffect";
 
 function GeminiResult() {
   const { result, loading } = useGeminiContext();
-  
-  // console.log(result)
 
+  // let textEffect = ''
+  // for (let i = 0; i < result[0].results.length; i++) {
+  //   textEffect += result.results[i]
+  // }
+  // console.log(textEffect)
   return (
     <>
       <div className="w-full min-h-screen mb-[15%]">
@@ -32,7 +36,7 @@ function GeminiResult() {
                       <p className="mb-5 font-semibold">{items.prompt}</p>
                     </div>
                     <ReactMarkdown className="text-sm font-normal">
-                      {items.results}
+                        {items.results}               
                     </ReactMarkdown>
                   </CardBody>
                 </Card>

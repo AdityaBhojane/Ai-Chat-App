@@ -18,13 +18,14 @@ export default function SearchBar() {
     setError,
     setShowPreviousResult,
     // preIndex,
-    setPreIndex,
+    // setPreIndex,
   } = useGeminiContext();
 
   const Response = async () => {
     try {
       setLoading(true);
       setShowResult(true);
+      setUserInput('');
       const response = await run(userInput);
       const data = {
         prompt: userInput,
@@ -45,6 +46,7 @@ export default function SearchBar() {
     <Input
       value={userInput}
       onChange={(e) => setUserInput(e.target.value)}
+      onKeyDown={(e)=>{if(e.key=="Enter"){Response()}}}
       classNames={{
         // base: "max-w-full sm:max-w-[10rem] h-10",
         mainWrapper: "h-12  ",
@@ -55,9 +57,10 @@ export default function SearchBar() {
       className="w-full"
       placeholder="Type to search..."
       size="sm"
-      endContent={<SearchIcon onClick={() => {
-        Response()
-      }} size={18} />}
+      endContent={<SearchIcon 
+        onClick={() => {Response()}} 
+        size={18} 
+        />}
       type="search"
     />
   );

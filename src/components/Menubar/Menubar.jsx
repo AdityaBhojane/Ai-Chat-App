@@ -20,18 +20,19 @@ export default function Menubar() {
     setShowPreviousResult,
     preIndex,
     setPreIndex,
-    setShowResult
+    setShowResult,
   } = useGeminiContext();
   // console.log(result[0].prompt.slice(0,10))
-  // console.log(previousResults)
+  // console.log(previousResults);
+  // console.log(preIndex)
   return (
     <Dropdown>
       <DropdownTrigger>
         <Button
           variant="bordered"
-          className="capitalize border border-[#ccc] text-white"
+          className="capitalize border border-[#ccc] light:text-black"
         >
-          Menu
+          Recent Chats
         </Button>
       </DropdownTrigger>
       <DropdownMenu
@@ -44,15 +45,23 @@ export default function Menubar() {
       >
         <DropdownItem
           onClick={() => {
-            if (!showPreviousResult) {
-              if(preIndex == 0 || preIndex){
-              previousResults[preIndex] = result;
-              setResult([]);
-              setHistory(true);
-            }else 
-              setPreviousResults((pre)=>[...pre,result])
-              setResult([]);
-              setHistory(true);
+            if (result.length !== 0 && !showPreviousResult) {
+              if (preIndex == 0 || preIndex) {
+                previousResults[preIndex] = result;
+                setResult([]);
+                setHistory(true);
+                setPreIndex(null)
+                console.log("wrong block")
+              } else {
+                setPreviousResults((pre) => [
+                  ...pre,
+                  result.length ? result : previousResults,
+                ]);
+                setResult([]);
+                setHistory(true);
+                
+                console.log("right block")
+              }
             } else {
               alert("Please Start Chat");
             }
@@ -71,20 +80,28 @@ export default function Menubar() {
                 color="warning"
                 variant="dot"
               >
-                <Chip 
-                onClick={()=>{
-                  if(preIndex == 0 || preIndex){
-                    previousResults[preIndex] = result;
-                    setResult([]);
-                    setHistory(true);
-                  }
-                  setShowPreviousResult(false)
-                  setResult(items)
-                  setPreIndex(index)
-                }}
-                className="min-w-[200px]" 
-                color="warning" 
-                variant="dot">
+                <Chip
+                  onClick={() => {
+                    if (preIndex == 0 || preIndex) {
+                      /* this checking verify that if user click on new chat and came back again 
+                       to history tab in that case since he open a new chat then there is not 
+                       content so to prevent error of map function i added new extra check 
+                    */
+                      if (result.length !== 0) {
+                        previousResults[preIndex] = result;
+                        setResult([]);
+                        setHistory(true);
+                      }
+                    }
+                    setShowPreviousResult(false);
+                    setResult(items);
+                    setPreIndex(index);
+                    setShowResult(true);
+                  }}
+                  className="min-w-[200px]"
+                  color="warning"
+                  variant="dot"
+                >
                   {items[0].prompt.slice(0, 20)}
                 </Chip>
               </DropdownItem>
@@ -93,8 +110,8 @@ export default function Menubar() {
         <DropdownItem
           onClick={() => {
             setPreviousResults([]);
-            setResult([]),
-            setShowResult(false);
+            setResult([]), setShowResult(false);
+            localStorage.clear();
           }}
           key="delete"
           color="danger"
